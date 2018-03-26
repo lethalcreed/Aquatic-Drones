@@ -1,0 +1,144 @@
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links > a {
+    color: white;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+#AquaticDrones {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    filter: grayscale(25%);
+}
+
+.logo{
+    width: 300px;
+    height: auto;
+    margin-top: 40px;
+}
+
+.div-clear{
+    background-color: lightseagreen;
+    color: white;
+    filter: opacity(85%);
+}
+
+.main-content-head{
+    font-size: 100px;
+}
+
+.main-content-body{
+    font-size: 30px;
+}
+
+.menu-bar{
+    position:absolute;
+    top: 0;
+    width: 100%;
+    height: 65px;
+}
+
+
+/* ========================================================================
+   Component: Card
+ ========================================================================== */
+.uk-card {
+    position: relative;
+    box-sizing: border-box;
+    transition: box-shadow 0.1s ease-in-out;
+}
+/* Sections
+ ========================================================================== */
+.uk-card-body {
+    padding: 30px 30px;
+}
+.uk-card-header {
+    padding: 15px 10px;
+}
+.uk-card-footer {
+    padding: 15px 30px;
+}
+/* Desktop and bigger */
+@media (min-width: 1200px) {
+    .uk-card-body {
+        padding: 40px 40px;
+    }
+    .uk-card-header {
+        padding: 20px 40px;
+    }
+    .uk-card-footer {
+        padding: 20px 40px;
+    }
+}
+/*
+ * Micro clearfix
+ */
+.uk-card-body::before,
+.uk-card-body::after,
+.uk-card-header::before,
+.uk-card-header::after,
+.uk-card-footer::before,
+.uk-card-footer::after {
+    content: "";
+    display: table;
+}
+.uk-card-body::after,
+.uk-card-header::after,
+.uk-card-footer::after {
+    clear: both;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-card-body > :last-child,
+.uk-card-header > :last-child,
+.uk-card-footer > :last-child {
+    margin-bottom: 0;
+}
