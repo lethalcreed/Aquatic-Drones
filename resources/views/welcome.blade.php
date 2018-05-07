@@ -35,7 +35,7 @@
 
     <div class="content">
         <div class="main-content div-clear uk-card">
-        <img src="http://uploads.webflow.com/57f217ad80f54a0b096d897d/57f218e6b0a162101f72b09d_aquatic_drones_white.svg" class="logo">
+        <img src="{{asset('/images/aquatic_drones_logo.svg')}}" class="logo">
             <div class="uk-card-header main-content-head">
                 TaskManager
             </div>
