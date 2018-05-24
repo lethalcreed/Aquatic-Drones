@@ -38,19 +38,20 @@
                                 <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         <li>
-                                            <a href="{{route('tasks.list')}}"><span uk-icon="icon:clock"></span> Tasks</a>
+                                            <a href="{{route('tasks.list')}}"><span uk-icon="icon:clock"></span>
+                                                Tasks</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('drones.list') }}"><span uk-icon="icon:list"></span> Drones</a>
+                                            <a href="{{ route('drones.list') }}"><span uk-icon="icon:list"></span>
+                                                Drones</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('settings.standard.edit') }}"><span uk-icon="icon: settings"></span> Settings</a>
+                                            <a href="{{ route('settings.standard.edit') }}"><span
+                                                        uk-icon="icon: settings"></span> Settings</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('harbors.list') }}"><span uk-icon="icon: lifesaver"></span> Harbors</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('tasks.list') }}"><span uk-icon="icon: location"></span> Routes (W.I.P.)</a>
+                                            <a href="{{ route('tasks.list') }}"><span uk-icon="icon: location"></span>
+                                                Routes (W.I.P.)</a>
                                         </li>
                                         <li class="uk-nav-divider"></li>
                                         <li>

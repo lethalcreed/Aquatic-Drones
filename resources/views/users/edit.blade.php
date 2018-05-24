@@ -6,15 +6,15 @@
 
             <div class="uk-card uk-card-default uk-width-1-2@m uk-align-center">
                 <div class="uk-card-header">
-                    <h3 class="uk-card-title">Add a Harbor</h3>
+                    <h3 class="uk-card-title">Edit a Harbor</h3>
                 </div>
                 <div class="uk-card-body">
-                    {{Form::open(['route' => 'harbors.store'])}}
+                    {{Form::model($harbor, ['route' => 'harbors.update'])}}
                     <fieldset class="uk-fieldset">
                         {{Form::hidden('id', null)}}
 
                         <div class="uk-margin">
-                            {{Form::label('name', 'The harbors name', ['class' => 'uk-form-label'])}}
+                            {{Form::label('name', 'users', ['class' => 'uk-form-label'])}}
                             <div class="uk-form-controls">
                                 {{Form::text('name', null,['class' => 'uk-input'])}}
                             </div>

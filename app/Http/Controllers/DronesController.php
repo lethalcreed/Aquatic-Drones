@@ -28,7 +28,7 @@ class DronesController extends Controller
         if (Auth::check()) {
             $droneHandler = new DroneHandler();
             //Get default settings and harbor list
-            $drone = $droneHandler->getSettingsAndHarbors(0);
+            $drone = $droneHandler->getSettings(0);
             return view('drones.add', compact('drone'));
         } else {
             session()->flash('warning', 'Please login to use this function');

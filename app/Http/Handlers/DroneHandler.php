@@ -14,17 +14,9 @@ class DroneHandler
         return Drones::get()->toArray();
     }
 
-    public function getSettingsAndHarbors($settings_id)
+    public function getSettings($settings_id)
     {
         $drones = [];
-
-        //Getting al the harbors and parsing to a usable list
-        $harbors = Harbor::get();
-        $harborsArray = [];
-        foreach ($harbors as $harbor) {
-            $harborsArray[$harbor->id] = $harbor->name;
-        }
-        $drones['harbors'] = $harborsArray;
 
         //Parsing the drone settings to a usable list and fetching them if neccesairy
         if ($settings_id == 0) {
@@ -52,8 +44,8 @@ class DroneHandler
     {
         $drones = Drones::where('id', '=', $id)->first()->toArray();
 
-        //Get settings and harbors and merge them into the main drone array
-        return array_merge($drones, $this->getSettingsAndHarbors($drones['drones_settings_id']));
+        //Get settings and users and merge them into the main drone array
+        return array_merge($drones, $this->getSettings($drones['drones_settings_id']));
 
     }
 

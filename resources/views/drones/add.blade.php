@@ -46,13 +46,6 @@
                         </div>
 
                         <div class="uk-margin">
-                            {{Form::label('harbor', 'The drones default harbor', ['class' => 'uk-form-label'])}}
-                            <div class="uk-form-controls">
-                                {{Form::select('harbor', $drone['harbors'], null,['class' => 'uk-select'])}}
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
                             {{Form::label('status', 'The drones status', ['class' => 'uk-form-label'])}}
                             <div class="uk-form-controls">
                                 {{Form::select('status', ['Idle' => 'Idle', 'Error' => 'Error', 'Busy' => 'Busy', 'Maintenance' => 'Maintenance'], null,['class' => 'uk-select'])}}
