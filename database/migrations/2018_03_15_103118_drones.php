@@ -16,7 +16,6 @@ class Drones extends Migration
         Schema::create('drones', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('drones_settings_id');
-            $table->integer('harbor_id');
             $table->text('name');
             $table->enum('status', ['Idle', 'Error', 'Busy', 'Maintenance']);
             $table->timestamps();

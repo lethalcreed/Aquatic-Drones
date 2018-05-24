@@ -17,3 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/weather/forecast', 'Api\SetSailApiController@forecast')->name('api.weather.forecast');
+Route::post('/weather/timeframe', 'Api\SetSailApiController@timeFrame')->name('api.weather.timeframe');
+
