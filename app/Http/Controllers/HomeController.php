@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Ixudra\Curl\Facades\Curl;
 
 class HomeController extends Controller

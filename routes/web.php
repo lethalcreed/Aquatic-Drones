@@ -35,6 +35,7 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 
 //Admin Routes
+
 Route::middleware(['role:admin'])->group(function () {
     //Drone Routes
     Route::get('/drones', 'DronesController@getList')->name('drones.list');
@@ -50,10 +51,11 @@ Route::middleware(['role:admin'])->group(function () {
 
     //User Routes
     Route::get('/users', 'UserController@getList')->name('users.list');
-    Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
+    Route::post('/users/assign-roles', 'UserController@postAdminAssignRoles')->name('users.list.assign');
     Route::post('/users/edit', 'UserController@update')->name('users.update');
     Route::get('/users/add', 'UserController@add')->name('users.add');
     Route::post('/users/add', 'UserController@store')->name('users.store');
+    Route::post('/users/create', 'UserController@create')->name('users.create');
     Route::get('/users/delete/{id}', 'UserController@delete')->name('users.delete');
 
     //Drone Task Routes
@@ -63,4 +65,5 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/tasks/add', 'DronesTasksController@add')->name('tasks.add');
     Route::post('/tasks/add', 'DronesTasksController@store')->name('tasks.store');
     Route::get('/tasks/delete/{id}', 'DronesTasksController@delete')->name('tasks.delete');
+
 });

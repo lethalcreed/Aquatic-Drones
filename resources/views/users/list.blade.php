@@ -22,12 +22,12 @@
                 <div class="uk-card uk-card-default">
 
                     <div class="uk-card-header">
-                        <h3 class="uk-card-title">Harbor Managment</h3>
-                        <p>These are the current harbors. You can add new drones and edit existing harbors</p>
+                        <h3 class="uk-card-title">User Managment</h3>
+                        <p>These are the current users.</p>
                     </div>
                     <div class="uk-card-body">
-                        <a href="{{route('harbors.add')}}" class="uk-icon-link"><span uk-icon="icon: plus-circle"></span>
-                            Add a Harbor</a>
+                        <a href="{{route('users.add')}}" class="uk-icon-link"><span uk-icon="icon: plus-circle"></span>
+                            Add a User</a>
                         <table class="uk-table uk-table-hover uk-table-devider uk-table-justify">
                             <thead>
                             <tr>
@@ -38,47 +38,47 @@
                                     Name
                                 </th>
                                 <th>
-                                    Description
+                                    Email
                                 </th>
                                 <th>
-                                    Berth
+                                    Client
                                 </th>
                                 <th>
-                                    Longtitude
+                                    Operator
                                 </th>
                                 <th>
-                                    Latitude
+                                    Admin
                                 </th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($harborsList as $harbor)
+                            @foreach($usersList as $user)
                                 <tr>
+                                    <form action="{{ route('users.list.assign') }}" method="post">
                                     <td>
-                                        {{$harbor['id']}}
+                                        {{$user['id']}}
                                     </td>
                                     <td>
-                                        {{$harbor['name']}}
+                                        {{$user['name']}}
                                     </td>
                                     <td>
-                                        {{$harbor['description']}}
+                                        {{ $user->email }} <input type="hidden" name="email" value="{{ $user->email }}">
                                     </td>
+                                    <td><input type="checkbox" {{ $user->hasRole('Client') ? 'checked' : ''}} name="role_client"></td>
+                                    <td><input type="checkbox" {{ $user->hasRole('Operator') ? 'checked' : ''}} name="role_operator"></td>
+                                    <td><input type="checkbox" {{ $user->hasRole('Admin') ? 'checked' : ''}} name="role_admin"></td>
+                                    <td><button type="submit" class="btn btn-default btn-sm">Assign Roles</button></td>
+                                    {{ csrf_field() }}
                                     <td>
-                                        {{$harbor['berth']}}
-                                    </td>
-                                    <td>
-                                        {{$harbor['longitude']}}
-                                    </td>
-                                    <td>
-                                        {{$harbor['latitude']}}
-                                    </td>
-                                    <td>
-                                        <a href="{{url('/')}}/harbors/edit/{{$harbor['id']}}" class="uk-icon-link"
+                                        <a href="{{url('/')}}/users/edit/{{$user['id']}}" class="uk-icon-link"
                                            uk-icon="icon: pencil"></a>
-                                        <a href="{{url('/')}}/harbors/delete/{{$harbor['id']}}" class="uk-icon-link"
+                                        <a href="{{url('/')}}/users/delete/{{$user['id']}}" class="uk-icon-link"
                                            uk-icon="icon: trash"
-                                           onclick="return confirm('Are you sure you want to delete {{$harbor['name']}}?')"></a>
+                                           onclick="return confirm('Are you sure you want to delete {{$user['name']}}?')"></a>
                                     </td>
+                                    </form>
                                 </tr>
                             @endforeach
                             </tbody>
