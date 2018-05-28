@@ -53,6 +53,10 @@
                                             <a href="{{ route('tasks.list') }}"><span uk-icon="icon: location"></span>
                                                 Routes (W.I.P.)</a>
                                         </li>
+                                        <li>
+                                            <a href="{{ route('users.list') }}"><span uk-icon="icon:user"></span>
+                                                Users</a>
+                                        </li>
                                         <li class="uk-nav-divider"></li>
                                         <li>
                                             <a href="{{ route('logout') }}"

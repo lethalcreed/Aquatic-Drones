@@ -71,5 +71,7 @@ class RegisterController extends Controller
 
         $role = Role::where('name', '=', 'Admin')->first();  //choose the default role upon user creation.
         $user->attachRole($role);
+
+        return $user;
     }
 }
