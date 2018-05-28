@@ -57,27 +57,38 @@
                             @foreach($usersList as $user)
                                 <tr>
                                     <form action="{{ route('users.list.assign') }}" method="post">
-                                    <td>
-                                        {{$user['id']}}
-                                    </td>
-                                    <td>
-                                        {{$user['name']}}
-                                    </td>
-                                    <td>
-                                        {{ $user->email }} <input type="hidden" name="email" value="{{ $user->email }}">
-                                    </td>
-                                    <td><input type="checkbox" {{ $user->hasRole('Client') ? 'checked' : ''}} name="role_client"></td>
-                                    <td><input type="checkbox" {{ $user->hasRole('Operator') ? 'checked' : ''}} name="role_operator"></td>
-                                    <td><input type="checkbox" {{ $user->hasRole('Admin') ? 'checked' : ''}} name="role_admin"></td>
-                                    <td><button type="submit" class="btn btn-default btn-sm">Assign Roles</button></td>
-                                    {{ csrf_field() }}
-                                    <td>
-                                        <a href="{{url('/')}}/users/edit/{{$user['id']}}" class="uk-icon-link"
-                                           uk-icon="icon: pencil"></a>
-                                        <a href="{{url('/')}}/users/delete/{{$user['id']}}" class="uk-icon-link"
-                                           uk-icon="icon: trash"
-                                           onclick="return confirm('Are you sure you want to delete {{$user['name']}}?')"></a>
-                                    </td>
+                                        <td>
+                                            {{$user['id']}}
+                                        </td>
+                                        <td>
+                                            {{$user['name']}}
+                                        </td>
+                                        <td>
+                                            {{ $user->email }} <input type="hidden" name="email"
+                                                                      value="{{ $user->email }}">
+                                        </td>
+                                        <td><input type="checkbox" class="uk-checkbox"
+                                                   {{ $user->hasRole('Client') ? 'checked' : ''}} name="role_client">
+                                        </td>
+                                        <td><input type="checkbox" class="uk-checkbox"
+                                                   {{ $user->hasRole('Operator') ? 'checked' : ''}} name="role_operator">
+                                        </td>
+                                        <td><input type="checkbox" class="uk-checkbox"
+                                                   {{ $user->hasRole('Admin') ? 'checked' : ''}} name="role_admin"></td>
+                                        <td>
+                                            <button class="uk-button uk-button-primary uk-button-small"
+                                                    onclick="return confirm('Do you want to apply these role changes to user {{$user['name']}}')">
+                                                Assign Roles
+                                            </button>
+                                        </td>
+                                        {{ csrf_field() }}
+                                        <td>
+                                            <a href="{{url('/')}}/users/edit/{{$user['id']}}" class="uk-icon-link"
+                                               uk-icon="icon: pencil"></a>
+                                            <a href="{{url('/')}}/users/delete/{{$user['id']}}" class="uk-icon-link"
+                                               uk-icon="icon: trash"
+                                               onclick="return confirm('Are you sure you want to delete {{$user['name']}}?')"></a>
+                                        </td>
                                     </form>
                                 </tr>
                             @endforeach

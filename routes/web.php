@@ -53,6 +53,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/users', 'UserController@getList')->name('users.list');
     Route::post('/users/assign-roles', 'UserController@postAdminAssignRoles')->name('users.list.assign');
     Route::post('/users/edit', 'UserController@update')->name('users.update');
+    Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
     Route::get('/users/add', 'UserController@add')->name('users.add');
     Route::post('/users/add', 'UserController@store')->name('users.store');
     Route::post('/users/create', 'UserController@create')->name('users.create');
