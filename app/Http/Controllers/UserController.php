@@ -6,6 +6,7 @@ use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,6 +15,7 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $usersList = User::all();
+
             return view('users.list', compact('usersList'));
         } else {
             session()->flash('warning', 'Please login to use this function');
@@ -65,14 +67,12 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
+        $role = Role::where('name', '=', 'Client')->first();  //choose the default role upon user creation.
+        $user->attachRole($role);
 
-        $user->save();
 
         session()->flash('success', 'The user is succesfully updated');
 
@@ -125,5 +125,17 @@ class UserController extends Controller
             $user->roles()->attach(Role::where('name', 'Admin')->first());
         }
         return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        $name = Request::get('name');
+
+        $result = DB::table('customers')
+            ->select(DB::raw("*"))
+            ->where('name', '=', $name)
+            ->get();
+
+        return $result;
     }
 }
