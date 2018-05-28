@@ -28,6 +28,18 @@
                     <div class="uk-card-body">
                         <a href="{{route('users.add')}}" class="uk-icon-link"><span uk-icon="icon: plus-circle"></span>
                             Add a User</a>
+
+                        {!! Form::open(['method'=>'GET','url'=>'users','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" name="search" placeholder="Search...">
+                            <span class="input-group-btn">
+                                        <button class="btn btn-primary btn-block" type="submit">
+                                            <i class="fa fa-search">Search</i>
+                                        </button>
+                                    </span>
+                        </div>
+                        {!! Form::close() !!}
+
                         <table class="uk-table uk-table-hover uk-table-devider uk-table-justify">
                             <thead>
                             <tr>

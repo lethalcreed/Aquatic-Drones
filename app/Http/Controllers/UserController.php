@@ -14,7 +14,12 @@ class UserController extends Controller
     public function getList()
     {
         if (Auth::check()) {
-            $usersList = User::all();
+            $search = \Request::get('search');
+
+            $usersList = User::where('name', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%')
+                ->orderBy('id', 'desc')
+                ->paginate(1);
 
             return view('users.list', compact('usersList'));
         } else {
@@ -99,7 +104,7 @@ class UserController extends Controller
         $user->save();
 //        $request->user()->save($user);
 
-        session()->flash('success', 'The user is succesfully updated');
+        session()->flash('success', 'The user is succesfully saved!');
 
         return redirect(route('users.list'));
     }
@@ -125,17 +130,5 @@ class UserController extends Controller
             $user->roles()->attach(Role::where('name', 'Admin')->first());
         }
         return redirect()->back();
-    }
-
-    public function search(Request $request)
-    {
-        $name = Request::get('name');
-
-        $result = DB::table('customers')
-            ->select(DB::raw("*"))
-            ->where('name', '=', $name)
-            ->get();
-
-        return $result;
     }
 }
