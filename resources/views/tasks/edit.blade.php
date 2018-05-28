@@ -35,9 +35,23 @@
                         </div>
 
                         <div class="uk-margin">
+                            {{Form::label('start_date', 'The tasks start date', ['class' => 'uk-form-label'])}}
+                            <div class="uk-form-controls">
+                                {{Form::date('start_date', null, ['class' => 'uk-select'])}}
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
                             {{Form::label('start_time', 'The start of the operational timeframe of the task', ['class' => 'uk-form-label'])}}
                             <div class="uk-form-controls">
                                 {{Form::time('start_time', null, ['class' => 'uk-input'])}}
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            {{Form::label('end_date', 'The tasks end date', ['class' => 'uk-form-label'])}}
+                            <div class="uk-form-controls">
+                                {{Form::date('end_date', null, ['class' => 'uk-select'])}}
                             </div>
                         </div>
 
