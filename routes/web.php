@@ -63,4 +63,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/tasks/add', 'DronesTasksController@add')->name('tasks.add');
     Route::post('/tasks/add', 'DronesTasksController@store')->name('tasks.store');
     Route::get('/tasks/delete/{id}', 'DronesTasksController@delete')->name('tasks.delete');
+
+    //Drone MapBox
+    Route::get('/map', function () {return view('map');})->name('drone.map');
 });
