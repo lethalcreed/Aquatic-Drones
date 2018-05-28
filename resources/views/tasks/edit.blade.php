@@ -65,7 +65,15 @@
                         <div class="uk-margin">
                             {{Form::label('drone', 'The drone that needs to perform this task', ['class' => 'uk-form-label'])}}
                             <div class="uk-form-controls">
-                                {{Form::select('drone', $task['drones'], null,['class' => 'uk-select'])}}
+                                <table>
+                                    @foreach($task['drones'] as $drone)
+                                        <tr>
+                                            <td>
+                                                {{Form::checkbox('drone', $drone, null,['class' => 'uk-checkbox'])}} {{ $drone }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
                             </div>
                         </div>
 
