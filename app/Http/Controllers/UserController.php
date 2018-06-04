@@ -21,7 +21,7 @@ class UserController extends Controller
                 ->orderBy('id', 'desc')
                 ->paginate(100);
 
-            return view('users.list', compact('usersList'));
+            return view('users.list', compact('usersList', 'search'));
         } else {
             session()->flash('warning', 'Please login to use this function');
             return redirect(route('login'));
