@@ -25,4 +25,4 @@ Route::post('/routes/update', 'RoutesController@updateRoute')->name('api.routes.
 Route::get('/routes/get/{id}', 'RoutesController@getRoute');
 Route::get('/routes/delete/{id}', 'RoutesController@deleteRoute');
 
-Route::post('/drones/log', 'DronesControllers@log')->name('api.drones.log');
+Route::post('/drones/log', 'DronesController@log')->name('api.drones.log');

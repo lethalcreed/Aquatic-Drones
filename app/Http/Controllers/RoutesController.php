@@ -28,7 +28,7 @@ class RoutesController extends Controller
                 $anchorpoint->save();
             }
 
-            $response = ['message' => 'The route has been created', 'routes_id' => $route->id];
+            $response = ['message' => 'The route has been created', 'routes_id' => $route->id, 'success' => true];
             return response($response);
         } else {
             return response()->json(["error" => "There was an error in your request. Either the post body was empty or the format is wrong"]);
@@ -66,7 +66,7 @@ class RoutesController extends Controller
                 $anchorpoint->save();
             }
 
-            $response = ['message' => 'The route has been updated'];
+            $response = ['message' => 'The route has been updated', 'success' => true];
 
             return response()->json($response);
         } else {
@@ -79,7 +79,7 @@ class RoutesController extends Controller
         Routes::find($routeId)->delete();
         RoutesAnchorpoints::where('routes_id', $routeId)->delete();
 
-        $response = ['message' => 'The route has been deleted'];
+        $response = ['message' => 'The route has been deleted', 'success' => true];
         return response()->json($response);
     }
 

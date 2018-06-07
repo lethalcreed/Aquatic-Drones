@@ -83,6 +83,7 @@ class SetSailApiHandler
                 $response['received_body'] = $postBody;
                 return $response;
         }
+        return false;
     }
 
     protected function fetchWeatherForecast($latitude, $longitude)

@@ -18,6 +18,7 @@ class DronesLogs extends Migration
             $table->integer('drones_id');
             $table->integer('drones_tasks_id');
             $table->text('message');
+            $table->enum('status', ['warning', 'danger', 'info', 'success', 'neutral']);
             $table->timestamps();
         });
     }
