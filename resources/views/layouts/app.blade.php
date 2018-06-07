@@ -57,6 +57,9 @@
                                             <a href="{{ route('users.list') }}"><span uk-icon="icon:user"></span>
                                                 Users</a>
                                         </li>
+                                        <li>
+                                            <a href="{{route('customers.list')}}"><span uk-icon="icon: world"></span> Customers</a>
+                                        </li>
                                         <li class="uk-nav-divider"></li>
                                         <li>
                                             <a href="{{ route('logout') }}"

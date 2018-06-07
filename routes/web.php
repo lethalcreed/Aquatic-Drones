@@ -67,4 +67,12 @@ Route::middleware(['role:admin'])->group(function () {
     Route::post('/tasks/add', 'DronesTasksController@store')->name('tasks.store');
     Route::get('/tasks/delete/{id}', 'DronesTasksController@delete')->name('tasks.delete');
 
+    //Customer Routes
+    Route::get('/customers', 'CustomerController@getList')->name('customers.list');
+    Route::post('/customers/edit', 'CustomerController@update')->name('customers.update');
+    Route::get('/customers/edit/{id}', 'CustomerController@edit')->name('customers.edit');
+    Route::get('/customers/add', 'CustomerController@add')->name('customers.add');
+    Route::post('/customers/add', 'CustomerController@store')->name('customers.store');
+    Route::post('/customers/create', 'CustomerController@create')->name('customers.create');
+    Route::get('/customers/delete/{id}', 'CustomerController@delete')->name('customers.delete');
 });
