@@ -46,7 +46,7 @@
                                                 Drones</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('settings.standard.edit') }}"><span
+                                            <a href="{{ route('settings.list') }}"><span
                                                         uk-icon="icon: settings"></span> Settings</a>
                                         </li>
                                         <li>
