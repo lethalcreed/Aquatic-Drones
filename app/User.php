@@ -37,7 +37,7 @@ class User extends Authenticatable
     public function hasAnyRole($roles)
     {
         if (is_array($roles)) {
-            foreach ($roles as $role){
+            foreach ($roles as $role) {
                 if ($this->hasRole($role)) {
                     return true;
                 }
@@ -56,6 +56,11 @@ class User extends Authenticatable
             return true;
         }
         return false;
+    }
+
+    public function customers()
+    {
+        return $this->belongsToMany('App\Customer', 'customers_to_users', 'users_id', 'customers_id');
     }
 
 }

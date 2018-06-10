@@ -45,7 +45,7 @@
                         {!! Form::close() !!}
                         <a href="{{route('customers.add')}}" class="uk-icon-link"><span
                                     uk-icon="icon: plus-circle"></span>
-                            Add a User</a>
+                            Add a Customer</a>
                         <table class="uk-table uk-table-hover uk-table-divider uk-table-justify">
                             <thead>
                             <tr>
@@ -72,7 +72,7 @@
                                            uk-icon="icon: pencil"></a>
                                         <a href="{{url('/')}}/customers/delete/{{$customer['id']}}" class="uk-icon-link"
                                            uk-icon="icon: trash"
-                                           onclick="return confirm('Are you sure you want to delete {{$customer['name']}}? All of the linked users wil not be deleted')"></a>
+                                           onclick="return confirm('Are you sure you want to delete {{$customer['name']}}? \nAll of the linked users wil not be deleted')"></a>
                                     </td>
                                 </tr>
                             @endforeach

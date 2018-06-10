@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DronesTasks extends Migration
+class CreateUsersToCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class DronesTasks extends Migration
      */
     public function up()
     {
-        Schema::create('drones_tasks', function (Blueprint $table) {
+        Schema::create('customers_to_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('name');
-            $table->longText('description');
-            $table->enum('priority', ['High', 'Medium', 'Low']);
-            $table->datetime('start_time');
-            $table->datetime('end_time');
-            $table->integer('routes_id');
-            $table->integer('drones_id');
+            $table->integer('users_id');
             $table->integer('customers_id');
             $table->timestamps();
         });
@@ -34,6 +28,6 @@ class DronesTasks extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drones_tasks');
+        Schema::dropIfExists('users_to_customers');
     }
 }
