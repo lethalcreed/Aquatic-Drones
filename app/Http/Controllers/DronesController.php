@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DronesSettings;
 use Illuminate\Http\Request;
 use App\Http\Handlers\DroneHandler;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +29,12 @@ class DronesController extends Controller
         if (Auth::check()) {
             $droneHandler = new DroneHandler();
             //Get default settings and harbor list
-            $drone = $droneHandler->getSettings(0);
-            return view('drones.add', compact('drone'));
+            $settingsList = DronesSettings::get();
+
+            foreach ($settingsList as $setting) {
+                $settings[$setting->id] = $setting->name;
+            }
+            return view('drones.add', compact('settings'));
         } else {
             session()->flash('warning', 'Please login to use this function');
             return redirect(route('login'));
@@ -50,7 +55,11 @@ class DronesController extends Controller
     {
         if (Auth::check()) {
             $drone = $this->getDrone($request->id);
-            return view('drones.edit', compact('drone'));
+            $settingsList = DronesSettings::get();
+            foreach ($settingsList as $setting) {
+                $settings[$setting->id] = $setting->name;
+            }
+            return view('drones.edit', compact('drone', 'settings'));
         } else {
             session()->flash('warning', 'Please login to use this function');
             return redirect(route('login'));
@@ -76,16 +85,6 @@ class DronesController extends Controller
 
             if ($dronesList) {
                 foreach ($dronesList as $key => $drone) {
-                    //Determine settings type
-                    switch ($drone['drones_settings_id']) {
-                        case 0:
-                            $dronesList[$key]['settings_type'] = 'Default';
-                            break;
-                        default:
-                            $dronesList[$key]['settings_type'] = 'Custom';
-                            break;
-                    }
-
                     //Determine Status color
                     switch ($drone['status']) {
                         case 'Idle':

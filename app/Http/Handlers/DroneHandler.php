@@ -43,46 +43,38 @@ class DroneHandler
     public function getDrone($id)
     {
         $drones = Drones::where('id', '=', $id)->first()->toArray();
-
-        //Get settings and users and merge them into the main drone array
-        return array_merge($drones, $this->getSettings($drones['drones_settings_id']));
-
+        return $drones;
     }
 
-    public function updateDrone($in_drone){
+    public function updateDrone($in_drone)
+    {
         $drone = Drones::find($in_drone['id']);
         $drone->fill($in_drone);
-        $settings_id = 0;
-
-        if($in_drone['overwrite_standard_settings'] > 0){
-            $droneSettings = new DronesSettings();
-            $droneSettings->fill($in_drone);
-            $droneSettings->save();
-            $settings_id = $droneSettings->id;
-        }
-
-        $drone->harbor_id = $in_drone['harbor'];
-        $drone->drones_settings_id = $settings_id;
+//        $settings_id = 0;
+//
+//        if ($in_drone['overwrite_standard_settings'] > 0) {
+//            $droneSettings = new DronesSettings();
+//            $droneSettings->fill($in_drone);
+//            $droneSettings->save();
+//            $settings_id = $droneSettings->id;
+//        }
+//
+//        $drone->harbor_id = $in_drone['harbor'];
+        $drone->drones_settings_id = $in_drone['settings'];
         $drone->save();
     }
 
-    public function addDrone($in_drone){
+    public function addDrone($in_drone)
+    {
         $drone = new Drones();
         $drone->fill($in_drone);
 
-        if($in_drone['overwrite_standard_settings'] == 0){
-            $drone->drones_settings_id = 0;
-        }else{
-            $droneSettings = new DronesSettings();
-            $droneSettings->fill($in_drone);
-            $droneSettings->save();
-            $drone->drones_settings_id = $droneSettings->id;
-        }
-        $drone->harbor_id = $in_drone['harbor'];
+        $drone->drones_settings_id = $in_drone['settings'];
         return $drone->save();
     }
 
-    public function deleteDrone($id){
+    public function deleteDrone($id)
+    {
         Drones::where('id', '=', $id)->delete();
     }
 }
