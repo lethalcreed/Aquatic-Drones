@@ -19,7 +19,7 @@ class UserController extends Controller
             $usersList = User::where('name', 'like', '%' . $search . '%')
                 ->orWhere('email', 'like', '%' . $search . '%')
                 ->orderBy('id', 'desc')
-                ->paginate(100);
+                ->paginate(10);
 
             return view('users.list', compact('usersList', 'search'));
         } else {

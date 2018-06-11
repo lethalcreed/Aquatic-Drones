@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Routes extends Migration
+class CreateUsersToCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class Routes extends Migration
      */
     public function up()
     {
-        Schema::create('routes', function (Blueprint $table) {
+        Schema::create('customers_to_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('name')->nullable();
+            $table->integer('users_id');
+            $table->integer('customers_id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class Routes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routes');
+        Schema::dropIfExists('users_to_customers');
     }
 }

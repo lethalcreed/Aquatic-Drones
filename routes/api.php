@@ -20,3 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/weather/forecast', 'Api\SetSailApiController@forecast')->name('api.weather.forecast');
 Route::post('/weather/timeframe', 'Api\SetSailApiController@timeFrame')->name('api.weather.timeframe');
 
+Route::post('/routes/create', 'RoutesController@createRoute')->name('api.routes.create');
+Route::post('/routes/update', 'RoutesController@updateRoute')->name('api.routes.update');
+Route::get('/routes/get/{id}', 'RoutesController@getRoute');
+Route::get('/routes/delete/{id}', 'RoutesController@deleteRoute');
+
+Route::post('/drones/log', 'DronesController@log')->name('api.drones.log');

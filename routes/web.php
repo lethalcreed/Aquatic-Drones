@@ -77,7 +77,6 @@ Route::middleware(['role:admin'])->group(function () {
     Route::post('/customers/edit', 'CustomerController@update')->name('customers.update');
     Route::get('/customers/edit/{id}', 'CustomerController@edit')->name('customers.edit');
     Route::get('/customers/add', 'CustomerController@add')->name('customers.add');
-    Route::post('/customers/add', 'CustomerController@store')->name('customers.store');
     Route::post('/customers/create', 'CustomerController@create')->name('customers.create');
     Route::get('/customers/delete/{id}', 'CustomerController@delete')->name('customers.delete');
 });

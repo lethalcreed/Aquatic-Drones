@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomersTableMigration extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,9 @@ class CreateCustomersTableMigration extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('name');
+            $table->longText('description');
+            $table->text('website');
             $table->timestamps();
         });
     }
