@@ -22,13 +22,14 @@
                 <div class="uk-card uk-card-default">
 
                     <div class="uk-card-header">
-                        <h3 class="uk-card-title">Drone Managment</h3>
-                        <p>These are the current drones. You can add new drones and edit existing drones</p>
+                        <h3 class="uk-card-title">Settings Managment</h3>
+                        <p>These are the current settings.</p>
                     </div>
                     <div class="uk-card-body">
-                        <a href="{{route('drones.add')}}" class="uk-icon-link"><span uk-icon="icon: plus-circle"></span>
-                            Add a Drone</a>
-                        <table class="uk-table uk-table-hover uk-table-devider uk-table-justify">
+                        <a href="{{route('settings.add')}}" class="uk-icon-link"><span uk-icon="icon: plus-circle"></span>
+                            Add a Profile</a>
+
+                        <table class="uk-table uk-table-hover uk-table-devider uk-table-justify" style="border-collapse:collapse;">
                             <thead>
                             <tr>
                                 <th>
@@ -37,29 +38,26 @@
                                 <th>
                                     Name
                                 </th>
-                                <th>
-                                    Status
-                                </th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($dronesList as $drone)
+                            @foreach($settingsList as $setting)
                                 <tr>
                                     <td>
-                                        {{$drone['id']}}
+                                        {{$setting['id']}}
                                     </td>
                                     <td>
-                                        {{$drone['name']}}
-                                    </td>
-                                    <td style="color: {{$drone['status_color']}}">
-                                        {{$drone['status']}}
+                                        {{$setting['name']}}
                                     </td>
                                     <td>
-                                        <a href="{{url('/')}}/drones/edit/{{$drone['id']}}" class="uk-icon-link"
+                                        <a href="{{url('/')}}/settings/view/{{$setting['id']}}" class="uk-icon-link"
+                                           uk-icon="icon: more"></a>
+                                        <a href="{{url('/')}}/settings/edit/{{$setting['id']}}" class="uk-icon-link"
                                            uk-icon="icon: pencil"></a>
-                                        <a href="{{url('/')}}/drones/delete/{{$drone['id']}}" class="uk-icon-link"
+                                        <a href="{{url('/')}}/settings/delete/{{$setting['id']}}" class="uk-icon-link"
                                            uk-icon="icon: trash"
-                                           onclick="return confirm('Are you sure you want to delete {{$drone['name']}}?')"></a>
+                                           onclick="return confirm('Are you sure you want to delete {{$setting['name']}}?')"></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -46,8 +46,13 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/drones/delete/{id}', 'DronesController@delete')->name('drones.delete');
 
     //Drone Setting Routes
-    Route::get('/drones/settings', 'DronesSettingsController@edit')->name('settings.standard.edit');
-    Route::post('/drones/settings', 'DronesSettingsController@update')->name('settings.standard.update');
+    Route::get('/settings', 'DronesSettingsController@getList')->name('settings.list');
+    Route::post('/settings/edit', 'DronesSettingsController@update')->name('settings.update');
+    Route::get('/settings/edit/{id}', 'DronesSettingsController@edit')->name('settings.edit');
+    Route::get('/settings/view/{id}', 'DronesSettingsController@view')->name('settings.view');
+    Route::get('/settings/add', 'DronesSettingsController@add')->name('settings.add');
+    Route::post('/settings/add', 'DronesSettingsController@create')->name('settings.create');
+    Route::get('/settings/delete/{id}', 'DronesSettingsController@delete')->name('settings.delete');
 
     //User Routes
     Route::get('/users', 'UserController@getList')->name('users.list');
