@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use Ixudra\Curl\Facades\Curl;
 
 class HomeController extends Controller
@@ -21,12 +22,28 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
 
+    public function admin()
+    {
         $weather = Curl::to('http://weerlive.nl/api/json-10min.php?locatie=Rotterdam')->asJson()->get();
         $weather = ($weather->liveweer)[0];
 
-        return view('home' , compact('weather'));
+        return view('home.admin' , compact('weather'));
+    }
+
+    public function operator()
+    {
+        $weather = Curl::to('http://weerlive.nl/api/json-10min.php?locatie=Rotterdam')->asJson()->get();
+        $weather = ($weather->liveweer)[0];
+
+        return view('home.operator' , compact('weather'));
+    }
+
+    public function client()
+    {
+        $weather = Curl::to('http://weerlive.nl/api/json-10min.php?locatie=Rotterdam')->asJson()->get();
+        $weather = ($weather->liveweer)[0];
+
+        return view('home.client' , compact('weather'));
     }
 }

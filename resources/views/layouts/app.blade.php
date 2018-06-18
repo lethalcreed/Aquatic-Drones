@@ -23,9 +23,21 @@
 
                 <div class="uk-navbar-left">
                     <!-- Branding Image -->
-                    <a class="uk-navbar-item uk-logo" href="{{ route('dashboard') }}">
+                    @role('admin')
+                    <a class="uk-navbar-item uk-logo" href="{{ route('dashboard.admin') }}">
                         {{ config('app.name', 'TaskManager') }}
                     </a>
+                    @endrole
+                    @role('operator')
+                    <a class="uk-navbar-item uk-logo" href="{{ route('dashboard.operator') }}">
+                        {{ config('app.name', 'TaskManager') }}
+                    </a>
+                    @endrole
+                    @role('client')
+                    <a class="uk-navbar-item uk-logo" href="{{ route('dashboard.client') }}">
+                        {{ config('app.name', 'TaskManager') }}
+                    </a>
+                    @endrole
                 </div>
 
                 <div class="uk-navbar-right">

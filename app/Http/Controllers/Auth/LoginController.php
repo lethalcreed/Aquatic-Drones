@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Role;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -20,12 +21,23 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+//    /**
+//     * Where to redirect users after login.
+//     *
+//     * @var string
+//     */
+//    protected $redirectTo = '/home';
+
+    protected function authenticated($request, $user)
+    {
+        if($user->hasRole('admin')){
+            return redirect()->route('home.admin');
+        } else if($user->hasRole('operator')){
+            return redirect()->route('home.operator');
+        } else if($user->hasRole('client')){
+            return redirect()->route('home.client');
+        }
+    }
 
     /**
      * Create a new controller instance.
