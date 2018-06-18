@@ -14,13 +14,6 @@ class SetSailApiController extends Controller
         $response = Curl::to('http://weerlive.nl/api/json-10min.php?locatie=Rotterdam')->asJson()->get();
         $forecast = ($response->liveweer)[0];
 
-//        $forecast['today'] = [
-//            "location" => ($response->liveweer)[0]->plaats,
-//            "temperature" => ($response->liveweer)[0]->temp,
-//            "average_temperature" => ($response->liveweer)[0]->gtemp,
-//
-//            ];
-
         return response()->json($forecast);
     }
 

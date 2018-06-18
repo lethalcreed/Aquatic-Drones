@@ -79,4 +79,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/customers/add', 'CustomerController@add')->name('customers.add');
     Route::post('/customers/create', 'CustomerController@create')->name('customers.create');
     Route::get('/customers/delete/{id}', 'CustomerController@delete')->name('customers.delete');
+    //Drone MapBox
+    Route::get('/map', function () {
+        return view('map');
+    })->name('drone.map');
 });
