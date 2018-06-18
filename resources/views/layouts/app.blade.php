@@ -115,7 +115,7 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('drone.map') }}"><span uk-icon="icon: location"></span>
-                                                Routes (W.I.P.)</a>
+                                                Route map</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('users.list') }}"><span uk-icon="icon:user"></span>
