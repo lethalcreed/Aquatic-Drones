@@ -19,9 +19,9 @@ class DronesTasks extends Migration
             $table->longText('description');
             $table->enum('priority', ['High','Medium','Low']);
             $table->date('start_date');
-            $table->datetime('start_time');
+            $table->time('start_time');
             $table->date('end_date');
-            $table->datetime('end_time');
+            $table->time('end_time');
             $table->integer('routes_id');
             $table->integer('drones_id');
             $table->timestamps();

@@ -41,10 +41,10 @@
                                     Priority
                                 </th>
                                 <th>
-                                    Start time
+                                    Start date
                                 </th>
                                 <th>
-                                    End time
+                                    End date
                                 </th>
                             </tr>
                             </thead>
@@ -61,10 +61,10 @@
                                         {{$task['priority']}}
                                     </td>
                                     <td>
-                                        {{$task['start_time']}}
+                                        {{$task['start_date']}}
                                     </td>
                                     <td>
-                                        {{$task['end_time']}}
+                                        {{$task['end_date']}}
                                     </td>
                                     <td>
                                         <a href="{{url('/')}}/tasks/edit/{{$task['id']}}" class="uk-icon-link"

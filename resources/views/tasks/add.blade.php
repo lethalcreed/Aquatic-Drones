@@ -63,13 +63,13 @@
                         </div>
 
                         <div class="uk-margin">
-                            {{Form::label('drone', 'The drone that needs to perform this task', ['class' => 'uk-form-label'])}}
+                            {{Form::label('drone', 'The drone(s) that needs to perform this task', ['class' => 'uk-form-label'])}}
                             <div class="uk-form-controls">
                                 <table>
-                                @foreach($task['drones'] as $drone)
+                                @foreach($drones as $drone)
                                     <tr>
                                         <td>
-                                            {{Form::checkbox('drone', $drone, null,['class' => 'uk-checkbox'])}} {{ $drone }}
+                                            {{Form::checkbox('drone[]', $drone->id, null,['class' => 'uk-checkbox'])}} {{ $drone->name }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="uk-margin">
-                            {{Form::label('route', 'The route the drone must follow', ['class' => 'uk-form-label'])}}
+                            {{Form::label('route', 'The route the drone(s) must follow', ['class' => 'uk-form-label'])}}
                             <div class="uk-form-controls">
                                 {{Form::select('route', $task['routes'], null,['class' => 'uk-select'])}}
                             </div>
