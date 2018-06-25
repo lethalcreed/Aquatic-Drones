@@ -22,7 +22,7 @@ Route::post('/weather/timeframe', 'Api\SetSailApiController@timeFrame')->name('a
 
 Route::post('/routes/create', 'RoutesController@createRoute')->name('api.routes.create');
 Route::post('/routes/update', 'RoutesController@updateRoute')->name('api.routes.update');
-Route::get('/routes/get/{id}', 'RoutesController@getRoute');
-Route::get('/routes/delete/{id}', 'RoutesController@deleteRoute');
+Route::get('/routes/{id}/get', 'RoutesController@getRoute');
+Route::get('/routes/{id}/delete', 'RoutesController@deleteRoute');
 
 Route::post('/drones/log', 'DronesController@log')->name('api.drones.log');
