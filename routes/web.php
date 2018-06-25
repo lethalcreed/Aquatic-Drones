@@ -29,14 +29,13 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-
-
 //Admin Routes
 
 Route::middleware(['role:admin'])->group(function () {
+    //Login
+    Route::get('/home_admin', 'HomeController@admin')->name('home.admin');
+    Route::get('/dashboard_admin', 'HomeController@admin')->name('dashboard.admin');
+
     //Drone Routes
     Route::get('/drones', 'DronesController@getList')->name('drones.list');
     Route::get('/drones/edit/{id}', 'DronesController@edit')->name('drones.edit');
@@ -79,8 +78,23 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/customers/add', 'CustomerController@add')->name('customers.add');
     Route::post('/customers/create', 'CustomerController@create')->name('customers.create');
     Route::get('/customers/delete/{id}', 'CustomerController@delete')->name('customers.delete');
+
     //Drone MapBox
     Route::get('/map', function () {
         return view('map');
     })->name('drone.map');
+});
+
+//Client Routes
+Route::middleware(['role:client'])->group(function () {
+    //Login
+    Route::get('/home_client', 'HomeController@client')->name('home.client');
+    Route::get('/dashboard_client', 'HomeController@client')->name('dashboard.client');
+});
+
+//Operator Routes
+Route::middleware(['role:operator'])->group(function () {
+    //Login
+    Route::get('/home_operator', 'HomeController@operator')->name('home.operator');
+    Route::get('/dashboard_operator', 'HomeController@operator')->name('dashboard.operator');
 });
