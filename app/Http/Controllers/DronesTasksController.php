@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Drones;
 use Illuminate\Http\Request;
 use App\Http\Handlers\DronesTasksHandler;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,9 @@ class DronesTasksController extends Controller
             $dronesTasksHandler = new DronesTasksHandler();
             //Get default settings and harbor list
             $task = $dronesTasksHandler->getDronesAndRoutes();
-            return view('tasks.add', compact('task'));
+
+            $drones = Drones::get();
+            return view('tasks.add', compact('task', 'drones'));
         } else {
             session()->flash('warning', 'Please login to use this function');
             return redirect(route('login'));
