@@ -26,10 +26,12 @@
                         <p>These are the current settings.</p>
                     </div>
                     <div class="uk-card-body">
-                        <a href="{{route('settings.add')}}" class="uk-icon-link"><span uk-icon="icon: plus-circle"></span>
+                        <a href="{{route('settings.add')}}" class="uk-icon-link"><span
+                                    uk-icon="icon: plus-circle"></span>
                             Add a Profile</a>
 
-                        <table class="uk-table uk-table-hover uk-table-devider uk-table-justify" style="border-collapse:collapse;">
+                        <table class="uk-table uk-table-hover uk-table-devider uk-table-justify"
+                               style="border-collapse:collapse;">
                             <thead>
                             <tr>
                                 <th>
@@ -38,7 +40,12 @@
                                 <th>
                                     Name
                                 </th>
-                                <th></th>
+                                <th>
+                                    View Profile
+                                </th>
+                                <th>
+                                    Management
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -53,6 +60,8 @@
                                     <td>
                                         <a href="{{url('/')}}/settings/view/{{$setting['id']}}" class="uk-icon-link"
                                            uk-icon="icon: more"></a>
+                                    </td>
+                                    <td>
                                         <a href="{{url('/')}}/settings/edit/{{$setting['id']}}" class="uk-icon-link"
                                            uk-icon="icon: pencil"></a>
                                         <a href="{{url('/')}}/settings/delete/{{$setting['id']}}" class="uk-icon-link"
