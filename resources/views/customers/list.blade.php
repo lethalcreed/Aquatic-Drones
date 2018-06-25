@@ -22,13 +22,31 @@
                 <div class="uk-card uk-card-default">
 
                     <div class="uk-card-header">
-                        <h3 class="uk-card-title">Harbor Managment</h3>
-                        <p>These are the current harbors. You can add new drones and edit existing harbors</p>
+                        <h3 class="uk-card-title">Customer Managment</h3>
+                        <p>These are the current customers.</p>
                     </div>
                     <div class="uk-card-body">
-                        <a href="{{route('harbors.add')}}" class="uk-icon-link"><span uk-icon="icon: plus-circle"></span>
-                            Add a Harbor</a>
-                        <table class="uk-table uk-table-hover uk-table-devider uk-table-justify">
+
+                        {!! Form::open(['method'=>'GET','url'=>'customers','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+                        <div uk-grid>
+                            <div class="uk-width-2-3">
+                                <input class="uk-input uk-width-1-1" name="search" placeholder="Search..."
+                                       value="{{$search}}">
+                            </div>
+                            <div class="uk-width-1-3">
+                                <a class="uk-button uk-button-default" href="{{route('customers.list')}}">
+                                    Clear
+                                </a>
+                                <button class="uk-button uk-button-primary">
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
+                        <a href="{{route('customers.add')}}" class="uk-icon-link"><span
+                                    uk-icon="icon: plus-circle"></span>
+                            Add a Customer</a>
+                        <table class="uk-table uk-table-hover uk-table-divider uk-table-justify">
                             <thead>
                             <tr>
                                 <th>
@@ -37,47 +55,24 @@
                                 <th>
                                     Name
                                 </th>
-                                <th>
-                                    Description
-                                </th>
-                                <th>
-                                    Berth
-                                </th>
-                                <th>
-                                    Longtitude
-                                </th>
-                                <th>
-                                    Latitude
-                                </th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($harborsList as $harbor)
+                            @foreach($customerList as $customer)
                                 <tr>
                                     <td>
-                                        {{$harbor['id']}}
+                                        {{$customer['id']}}
                                     </td>
                                     <td>
-                                        {{$harbor['name']}}
+                                        {{$customer['name']}}
                                     </td>
                                     <td>
-                                        {{$harbor['description']}}
-                                    </td>
-                                    <td>
-                                        {{$harbor['berth']}}
-                                    </td>
-                                    <td>
-                                        {{$harbor['longitude']}}
-                                    </td>
-                                    <td>
-                                        {{$harbor['latitude']}}
-                                    </td>
-                                    <td>
-                                        <a href="{{url('/')}}/harbors/edit/{{$harbor['id']}}" class="uk-icon-link"
+                                        <a href="{{url('/')}}/customers/edit/{{$customer['id']}}" class="uk-icon-link"
                                            uk-icon="icon: pencil"></a>
-                                        <a href="{{url('/')}}/harbors/delete/{{$harbor['id']}}" class="uk-icon-link"
+                                        <a href="{{url('/')}}/customers/delete/{{$customer['id']}}" class="uk-icon-link"
                                            uk-icon="icon: trash"
-                                           onclick="return confirm('Are you sure you want to delete {{$harbor['name']}}?')"></a>
+                                           onclick="return confirm('Are you sure you want to delete {{$customer['name']}}? \nAll of the linked users wil not be deleted')"></a>
                                     </td>
                                 </tr>
                             @endforeach

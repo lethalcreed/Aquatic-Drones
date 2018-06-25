@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Harbor extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class Harbor extends Migration
      */
     public function up()
     {
-        Schema::create('harbor', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
             $table->longText('description');
-            $table->text('berth');
-            $table->double('latitude');
-            $table->double('longitude');
+            $table->text('website');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class Harbor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('harbor');
+        Schema::dropIfExists('customers');
     }
 }

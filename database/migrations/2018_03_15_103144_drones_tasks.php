@@ -24,6 +24,7 @@ class DronesTasks extends Migration
             $table->time('end_time');
             $table->integer('routes_id');
             $table->integer('drones_id');
+            $table->integer('customers_id');
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use jeremykenedy\LaravelRoles\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -22,12 +23,22 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+//    /**
+//     * Where to redirect users after registration.
+//     *
+//     * @var string
+//     */
+//    protected $redirectTo = '/home';
+    protected function authenticated($request, $user)
+    {
+        if($user->hasRole('admin')){
+            return redirect()->route('home.admin');
+        } else if($user->hasRole('operator')){
+            return redirect()->route('home.operator');
+        } else if($user->hasRole('client')){
+            return redirect()->route('home.client');
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -42,7 +53,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -57,15 +68,20 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $role = Role::where('name', '=', 'Admin')->first();  //choose the default role upon user creation.
+        $user->attachRole($role);
+
+        return $user;
     }
 }

@@ -13,6 +13,70 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css' type='text/css'/>
+    <style>
+     .full-height {
+                height: 88vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+            .marker {
+                display: block;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                padding: 0;
+            }
+            .mapboxgl-marker {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                border:1px solid gray;
+                background-color:yellow;
+            }
+            .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+    </style>
 </head>
 <body>
 <div id="app">
@@ -23,9 +87,21 @@
 
                 <div class="uk-navbar-left">
                     <!-- Branding Image -->
-                    <a class="uk-navbar-item uk-logo" href="{{ route('dashboard') }}">
+                    @role('admin')
+                    <a class="uk-navbar-item uk-logo" href="{{ route('dashboard.admin') }}">
                         {{ config('app.name', 'TaskManager') }}
                     </a>
+                    @endrole
+                    @role('operator')
+                    <a class="uk-navbar-item uk-logo" href="{{ route('dashboard.operator') }}">
+                        {{ config('app.name', 'TaskManager') }}
+                    </a>
+                    @endrole
+                    @role('client')
+                    <a class="uk-navbar-item uk-logo" href="{{ route('dashboard.client') }}">
+                        {{ config('app.name', 'TaskManager') }}
+                    </a>
+                    @endrole
                 </div>
 
                 <div class="uk-navbar-right">
@@ -38,19 +114,27 @@
                                 <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         <li>
-                                            <a href="{{route('tasks.list')}}"><span uk-icon="icon:clock"></span> Tasks</a>
+                                            <a href="{{route('tasks.list')}}"><span uk-icon="icon:clock"></span>
+                                                Tasks</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('drones.list') }}"><span uk-icon="icon:list"></span> Drones</a>
+                                            <a href="{{ route('drones.list') }}"><span uk-icon="icon:list"></span>
+                                                Drones</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('settings.standard.edit') }}"><span uk-icon="icon: settings"></span> Settings</a>
+                                            <a href="{{ route('settings.list') }}"><span
+                                                        uk-icon="icon: settings"></span> Settings</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('harbors.list') }}"><span uk-icon="icon: lifesaver"></span> Harbors</a>
+                                            <a href="{{ route('drone.map') }}"><span uk-icon="icon: location"></span>
+                                                Route map</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('tasks.list') }}"><span uk-icon="icon: location"></span> Routes (W.I.P.)</a>
+                                            <a href="{{ route('users.list') }}"><span uk-icon="icon:user"></span>
+                                                Users</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('customers.list')}}"><span uk-icon="icon: world"></span> Customers</a>
                                         </li>
                                         <li class="uk-nav-divider"></li>
                                         <li>

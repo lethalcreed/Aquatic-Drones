@@ -29,35 +29,72 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
+//Admin Routes
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::middleware(['role:admin'])->group(function () {
+    //Login
+    Route::get('/home_admin', 'HomeController@admin')->name('home.admin');
+    Route::get('/dashboard_admin', 'HomeController@admin')->name('dashboard.admin');
 
-//Drone Routes
-Route::get('/drones', 'DronesController@getList')->name('drones.list');
-Route::get('/drones/edit/{id}', 'DronesController@edit')->name('drones.edit');
-Route::post('/drones/edit', 'DronesController@update')->name('drones.update');
-Route::get('/drones/add', 'DronesController@add')->name('drones.add');
-Route::post('/drones/add', 'DronesController@store')->name('drones.store');
-Route::get('/drones/delete/{id}', 'DronesController@delete')->name('drones.delete');
+    //Drone Routes
+    Route::get('/drones', 'DronesController@getList')->name('drones.list');
+    Route::get('/drones/edit/{id}', 'DronesController@edit')->name('drones.edit');
+    Route::post('/drones/edit', 'DronesController@update')->name('drones.update');
+    Route::get('/drones/add', 'DronesController@add')->name('drones.add');
+    Route::post('/drones/add', 'DronesController@store')->name('drones.store');
+    Route::get('/drones/delete/{id}', 'DronesController@delete')->name('drones.delete');
 
-//Drone Setting Routes
-Route::get('/drones/settings', 'DronesSettingsController@edit')->name('settings.standard.edit');
-Route::post('/drones/settings', 'DronesSettingsController@update')->name('settings.standard.update');
+    //Drone Setting Routes
+    Route::get('/settings', 'DronesSettingsController@getList')->name('settings.list');
+    Route::post('/settings/edit', 'DronesSettingsController@update')->name('settings.update');
+    Route::get('/settings/edit/{id}', 'DronesSettingsController@edit')->name('settings.edit');
+    Route::get('/settings/view/{id}', 'DronesSettingsController@view')->name('settings.view');
+    Route::get('/settings/add', 'DronesSettingsController@add')->name('settings.add');
+    Route::post('/settings/add', 'DronesSettingsController@create')->name('settings.create');
+    Route::get('/settings/delete/{id}', 'DronesSettingsController@delete')->name('settings.delete');
 
-//Harbor Routes
-Route::get('/harbors', 'HarborController@getList')->name('harbors.list');
-Route::get('/harbors/edit/{id}', 'HarborController@edit')->name('harbors.edit');
-Route::post('/harbors/edit', 'HarborController@update')->name('harbors.update');
-Route::get('/harbors/add', 'HarborController@add')->name('harbors.add');
-Route::post('/harbors/add', 'HarborController@store')->name('harbors.store');
-Route::get('/harbors/delete/{id}', 'HarborController@delete')->name('harbors.delete');
+    //User Routes
+    Route::get('/users', 'UserController@getList')->name('users.list');
+    Route::post('/users/assign-roles', 'UserController@postAdminAssignRoles')->name('users.list.assign');
+    Route::post('/users/edit', 'UserController@update')->name('users.update');
+    Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
+    Route::get('/users/add', 'UserController@add')->name('users.add');
+    Route::post('/users/add', 'UserController@store')->name('users.store');
+    Route::post('/users/create', 'UserController@create')->name('users.create');
+    Route::get('/users/delete/{id}', 'UserController@delete')->name('users.delete');
 
-//Drone Task Routes
-Route::get('/tasks', 'DronesTasksController@getList')->name('tasks.list');
-Route::get('/tasks/edit/{id}', 'DronesTasksController@edit')->name('tasks.edit');
-Route::post('/tasks/edit', 'DronesTasksController@update')->name('tasks.update');
-Route::get('/tasks/add', 'DronesTasksController@add')->name('tasks.add');
-Route::post('/tasks/add', 'DronesTasksController@store')->name('tasks.store');
-Route::get('/tasks/delete/{id}', 'DronesTasksController@delete')->name('tasks.delete');
+    //Drone Task Routes
+    Route::get('/tasks', 'DronesTasksController@getList')->name('tasks.list');
+    Route::get('/tasks/edit/{id}', 'DronesTasksController@edit')->name('tasks.edit');
+    Route::post('/tasks/edit', 'DronesTasksController@update')->name('tasks.update');
+    Route::get('/tasks/add', 'DronesTasksController@add')->name('tasks.add');
+    Route::post('/tasks/add', 'DronesTasksController@store')->name('tasks.store');
+    Route::get('/tasks/delete/{id}', 'DronesTasksController@delete')->name('tasks.delete');
 
+    //Customer Routes
+    Route::get('/customers', 'CustomerController@getList')->name('customers.list');
+    Route::post('/customers/edit', 'CustomerController@update')->name('customers.update');
+    Route::get('/customers/edit/{id}', 'CustomerController@edit')->name('customers.edit');
+    Route::get('/customers/add', 'CustomerController@add')->name('customers.add');
+    Route::post('/customers/create', 'CustomerController@create')->name('customers.create');
+    Route::get('/customers/delete/{id}', 'CustomerController@delete')->name('customers.delete');
+
+    //Drone MapBox
+    Route::get('/map', function () {
+        return view('map');
+    })->name('drone.map');
+});
+
+//Client Routes
+Route::middleware(['role:client'])->group(function () {
+    //Login
+    Route::get('/home_client', 'HomeController@client')->name('home.client');
+    Route::get('/dashboard_client', 'HomeController@client')->name('dashboard.client');
+});
+
+//Operator Routes
+Route::middleware(['role:operator'])->group(function () {
+    //Login
+    Route::get('/home_operator', 'HomeController@operator')->name('home.operator');
+    Route::get('/dashboard_operator', 'HomeController@operator')->name('dashboard.operator');
+});

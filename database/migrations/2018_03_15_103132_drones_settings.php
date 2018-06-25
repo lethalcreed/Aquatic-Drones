@@ -15,6 +15,7 @@ class DronesSettings extends Migration
     {
         Schema::create('drones_settings', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('name');
             $table->double('wind_speed');
             $table->time('operation_time_start');
             $table->time('operation_time_end');

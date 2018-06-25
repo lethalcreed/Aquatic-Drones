@@ -40,9 +40,6 @@
                                 <th>
                                     Status
                                 </th>
-                                <th>
-                                    Settings Type
-                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,9 +53,6 @@
                                     </td>
                                     <td style="color: {{$drone['status_color']}}">
                                         {{$drone['status']}}
-                                    </td>
-                                    <td>
-                                        {{$drone['settings_type']}}
                                     </td>
                                     <td>
                                         <a href="{{url('/')}}/drones/edit/{{$drone['id']}}" class="uk-icon-link"
